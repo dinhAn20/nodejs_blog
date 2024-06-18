@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const methodOverride = require("method-override");
 const handlebars = require("express-handlebars");
 const app = express();
 app.use(
@@ -8,7 +9,10 @@ app.use(
     extended: true,
   })
 );
+app.use(methodOverride("_method"));
+
 app.use(express.json());
+
 const port = 3000;
 const route = require("./routes");
 const db = require("./configs/db");
